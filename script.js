@@ -5,6 +5,8 @@ let timer_display = document.getElementById("timer");
 //
 // log identity 
 let log_display = document.getElementById("log_output");
+// title bar 
+let title_bar = document.getElementById("live_title");
 
 // a button that that the input and display the timer from the user
 const timer_button = document.getElementById("button_timer")
@@ -16,7 +18,7 @@ timer_button.onclick = ()=> {
     let user_value = document.getElementById("input_timer").value;
     // only take value more than 0 and less then 60
     if (user_value > 0 && user_value <= 60) {
-        timer_display.innerHTML = `${user_value}:00`;
+        title_bar.innerHTML = timer_display.innerHTML = `${user_value}:00`;
         
         // saperate the minute into hours and minutes and seconds HH:MM:SS
         // convert total user input from minutes into second instead. --todo
@@ -25,7 +27,8 @@ timer_button.onclick = ()=> {
     running_timer = setInterval(()=>{
         let minutes = Math.floor(totalSec / 60);
         let seconds = totalSec % 60;
-        timer_display.innerHTML = `${minutes.toString().padStart(2,0)}:${seconds.toString().padStart(2,0)}`
+        // display the timer into the title bar and the main display 
+       title_bar.innerHTML = timer_display.innerHTML = `${minutes.toString().padStart(2,0)}:${seconds.toString().padStart(2,0)}`
         totalSec--
         if (totalSec < 0){clearInterval(running_timer);}
     },1000)
