@@ -36,24 +36,26 @@ timer_button.onclick = ()=> {
 }
 //adeed clickable button for looging in timer
 // using lastItem as a key to obtain the last item from localStorage. 
-let storeLocal = []; 
 let i = localStorage.getItem("lastItem");
 if (i == null){
     i = 0;
 }
-log_button.onclick = () => {
-    i++ 
-    let log_output = timer_display.innerHTML;
-    localStorage.setItem(i,log_output);
-    //added in element of H2 below the button to log in the timer
-    addElement();
 
+log_button.onclick = () => {
+    let log_storage = timer_display.innerHTML;
+    localStorage.setItem(i,log_storage);
+    //added in element of div below the button to log in the timer
+    addElement();
+    //display output of log time but only will log if the timer is running
     function addElement(){
-        const newP = document.createElement("p");
-        const newDisplay = document.createTextNode(`timestamp ${i}: ${localStorage.getItem(i)}`)
-        newP.appendChild(newDisplay);
-        document.body.insertBefore(newP,log_display);
+        const newP = document.createElement('p');
+            if (log_storage == "00:00") {
+                log_display.textContent = `Timer need to be running!`;
+            } else {
+            newP.textContent = `timestamp ${i}: ${localStorage.getItem(i)}`;
+            log_display.appendChild(newP);
+            i++ 
+            }
     }
-storeLocal.push(i);
 localStorage.setItem("lastItem",i);
 }
