@@ -54,8 +54,11 @@ log_button.onclick = () => {
             localStorage.setItem(i,log_storage);
             newP.textContent = `timestamp ${i}: ${localStorage.getItem(i)}`;
             log_display.appendChild(newP);
+            //each added new element have its own ID 
+            newP.setAttribute("id",`id${i}`);
+            localStorage.setItem("lastItem",i);
             i++ 
             }
     }
-localStorage.setItem("lastItem",i);
 }
+localStorage.clear();
