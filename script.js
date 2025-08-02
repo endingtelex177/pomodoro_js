@@ -38,12 +38,11 @@ timer_button.onclick = ()=> {
 // using lastItem as a key to obtain the last item from localStorage. 
 let i = localStorage.getItem("lastItem");
 if (i == null){
-    i = 0;
+    i = 1;
 }
 
 log_button.onclick = () => {
     let log_storage = timer_display.innerHTML;
-    localStorage.setItem(i,log_storage);
     //added in element of div below the button to log in the timer
     addElement();
     //display output of log time but only will log if the timer is running
@@ -52,6 +51,7 @@ log_button.onclick = () => {
             if (log_storage == "00:00") {
                 log_display.textContent = `Timer need to be running!`;
             } else {
+            localStorage.setItem(i,log_storage);
             newP.textContent = `timestamp ${i}: ${localStorage.getItem(i)}`;
             log_display.appendChild(newP);
             i++ 
